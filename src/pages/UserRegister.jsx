@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Center, Text, TextInput } from "@mantine/core";
 import { Link } from "react-router-dom";
 
-export default function Login() {
+export default function UserRegister() {
     return (
         <div
             style={{
@@ -32,10 +32,15 @@ export default function Login() {
                         fw={700}
                         style={{ marginBottom: "16px", color: "#333" }}
                     >
-                        Login
+                        Signup
                     </Text>
                     <TextInput
                         label="Username"
+                        style={{ width: "100%", marginBottom: "16px" }}
+                    />
+                    <TextInput
+                        label="Email"
+                        type="email"
                         style={{ width: "100%", marginBottom: "16px" }}
                     />
                     <TextInput
@@ -54,18 +59,17 @@ export default function Login() {
                             color: "white",
                         }}
                     >
-                        Login
+                        Signup
                     </Button>
-                    <Link
-                        to="/register"
-                        style={{
-                            color: "#008080",
-                            textDecoration: "none",
-                            textAlign: "center",
-                        }}
-                    >
-                        Create a new account
-                    </Link>
+                    <Text style={{ marginBottom: "16px" }}>
+                        Already have an account?{" "}
+                        <Link
+                            to="/login"
+                            style={{ color: "#008080", textDecoration: "none" }}
+                        >
+                            Login
+                        </Link>
+                    </Text>
                 </Box>
             </Center>
         </div>
