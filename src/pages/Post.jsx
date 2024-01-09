@@ -33,14 +33,14 @@ const Post = () => {
         },
     ]);
 
-    const [addModal, setAddModal] = useState(false);
+    const [showAddPostModel, setShowAddPostModel] = useState(false);
 
     const openAddModal = () => {
-        setAddModal(true);
+        setShowAddPostModel(true);
     };
 
     const closeAddModal = () => {
-        setAddModal(false);
+        setShowAddPostModel(false);
     };
 
     return (
@@ -61,9 +61,10 @@ const Post = () => {
                 <h1 style={{ marginBottom: "16px", textAlign: "center" }}>
                     Latest Posts
                 </h1>
-                {posts.map((post, index) => (
-                    <PostCard key={index} {...post} />
-                ))}
+                {posts &&
+                    posts.map((post, index) => (
+                        <PostCard key={index} {...post} />
+                    ))}
             </Container>
 
             {/* Floating Add Button */}
@@ -79,7 +80,7 @@ const Post = () => {
                 +
             </GradientButton>
             <AddPostModel
-                opened={addModal}
+                opened={showAddPostModel}
                 onClose={closeAddModal}
             ></AddPostModel>
         </div>

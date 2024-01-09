@@ -44,7 +44,6 @@ export default function AddPostModel({ opened, onClose, setPosts }) {
 
     return (
         <Modal opened={opened} onClose={closeAddModal} title="Add New Post">
-            {/* Add your post creation components here */}
             <Group>
                 <Text>
                     Add your file picker, tag selector, and other post
