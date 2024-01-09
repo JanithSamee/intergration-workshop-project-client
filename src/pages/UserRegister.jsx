@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, Center, Text, TextInput } from "@mantine/core";
 import { Link } from "react-router-dom";
+import { register } from "../utility/api/user.api";
 
 export default function UserRegister() {
+    const [formData, setFormData] = useState({
+        username: "",
+        password: "",
+        email: "",
+    });
+    async function handleSubmit() {
+        try {
+            const res = await register(formData);
+
+            if (res.status == 200) {
+                alert("User Created");
+                window.location.replace("/login");
+            }
+        } catch (error) {
+            alert("Unable to create user");
+        }
+    }
+
     return (
         <div
             style={{
@@ -36,16 +55,40 @@ export default function UserRegister() {
                     </Text>
                     <TextInput
                         label="Username"
+                        onChange={(e) =>
+                            e &&
+                            e.target &&
+                            setFormData({
+                                ...formData,
+                                username: e.target.value,
+                            })
+                        }
                         style={{ width: "100%", marginBottom: "16px" }}
                     />
                     <TextInput
                         label="Email"
                         type="email"
+                        onChange={(e) =>
+                            e &&
+                            e.target &&
+                            setFormData({
+                                ...formData,
+                                email: e.target.value,
+                            })
+                        }
                         style={{ width: "100%", marginBottom: "16px" }}
                     />
                     <TextInput
                         label="Password"
                         type="password"
+                        onChange={(e) =>
+                            e &&
+                            e.target &&
+                            setFormData({
+                                ...formData,
+                                password: e.target.value,
+                            })
+                        }
                         style={{ width: "100%", marginBottom: "24px" }}
                     />
                     <Button
@@ -53,6 +96,7 @@ export default function UserRegister() {
                         color="teal"
                         mt={8}
                         mb={8}
+                        onClick={() => handleSubmit()}
                         style={{
                             width: "100%",
                             backgroundColor: "#008080",
