@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Text, Input, Group, Grid } from "@mantine/core";
-import { Header } from "../components/header";
+import { Header } from "../components/Header";
 import { getUserData } from "../utility/api/user.api";
 import useAuthContext from "../utility/Context/Auth.Context";
 

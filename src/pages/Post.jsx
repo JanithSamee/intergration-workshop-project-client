@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Divider, Button, Modal, Container, Group, Text } from "@mantine/core";
 import { PostCard } from "../components/PostCard";
-import { Header } from "../components/header";
+import { Header } from "../components/Header";
 import GradientButton from "../components/GradientButton";
 import AddPostModel from "../components/AddPostModel";
 
