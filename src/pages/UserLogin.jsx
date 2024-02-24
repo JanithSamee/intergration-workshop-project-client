@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { Box, Button, Center, Text, TextInput } from "@mantine/core";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../utility/api/user.api";
+import useAuthContext from "../utility/Context/Auth.Context";
 
 export default function Login() {
     const [formData, setFormData] = useState({ username: "", password: "" });
+    const authContext = useAuthContext();
+    const navigator = useNavigate();
 
     async function handleSubmit() {
         try {
             const res = await login(formData);
-            console.log(res.data.token);
             if (res.status === 200 && res.data.token) {
-                window.location.replace("/account");
+                authContext && authContext.setToken(res.data.token);
                 localStorage.setItem("token", res.data.token);
+                navigator("/account");
             }
         } catch (error) {
             alert("Error Occured");

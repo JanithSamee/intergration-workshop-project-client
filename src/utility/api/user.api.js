@@ -15,5 +15,12 @@ async function login({ username, password }) {
         password,
     });
 }
+async function getUserData(token) {
+    return await BASE_API.get("/user/get", {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
+}
 
-export { register, login };
+export { register, login, getUserData };

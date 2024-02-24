@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal, Text, Input, Group, Grid } from "@mantine/core";
 import { Header } from "../components/header";
+import { getUserData } from "../utility/api/user.api";
+import useAuthContext from "../utility/Context/Auth.Context";
 
 const UserAccount = () => {
     const [user, setUser] = useState({
@@ -25,6 +27,28 @@ const UserAccount = () => {
         setUser((prevUser) => ({ ...prevUser, phoneNumber: e.target.value }));
     };
 
+    const authContext = useAuthContext();
+
+    useEffect(() => {
+        async function getData() {
+            try {
+                const res = await getUserData(authContext.token);
+                authContext.setUser({
+                    username: res.data.user.username,
+                    email: res.data.user.email,
+                    _id: res.data.user._id,
+                });
+                setUser({
+                    fullName: res.data.user.username,
+                    phoneNumber: res.data.email,
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        authContext.token && getData();
+    }, [authContext]);
+
     return (
         <>
             <Header></Header>
@@ -34,7 +58,7 @@ const UserAccount = () => {
                     <Grid.Col span={12} md={6}>
                         <Text>Full Name:</Text>
                         <Input
-                            value={user.fullName}
+                            value={user.fullName || ""}
                             onChange={handleFullNameChange}
                             placeholder="Enter your full name"
                         />
@@ -42,7 +66,7 @@ const UserAccount = () => {
                     <Grid.Col span={12} md={6}>
                         <Text>Phone Number:</Text>
                         <Input
-                            value={user.phoneNumber}
+                            value={user.phoneNumber || ""}
                             onChange={handlePhoneNumberChange}
                             placeholder="Enter your phone number"
                         />

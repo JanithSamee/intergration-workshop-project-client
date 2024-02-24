@@ -4,6 +4,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 // import { PersonIcon } from "/icons";
 import { IconUser } from "@tabler/icons-react";
+import useAuthContext from "../utility/Context/Auth.Context";
 
 const links = [
     { link: "/login", label: "Login" },
@@ -44,6 +45,7 @@ export function Header() {
         </Link>
     ));
 
+    const authContext = useAuthContext();
     return (
         <header
             style={{
@@ -82,6 +84,9 @@ export function Header() {
                     <Tooltip label="Account">
                         <IconUser />
                     </Tooltip>
+                    <Text c="dimmed">
+                        {authContext.user && authContext.user.email}
+                    </Text>
                 </Link>
 
                 <Burger

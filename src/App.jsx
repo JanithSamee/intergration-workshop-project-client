@@ -6,6 +6,7 @@ import { MantineProvider } from "@mantine/core";
 import UserRegister from "./pages/UserRegister";
 import Post from "./pages/Post";
 import UserAccount from "./pages/UserAccount";
+import { AuthProvider } from "./utility/Context/Auth.Context";
 
 export default function App() {
     const router = createBrowserRouter([
@@ -32,7 +33,9 @@ export default function App() {
     ]);
     return (
         <MantineProvider>
-            <RouterProvider router={router} />
+            <AuthProvider>
+                <RouterProvider router={router} />
+            </AuthProvider>
         </MantineProvider>
     );
 }
