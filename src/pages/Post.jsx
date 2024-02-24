@@ -82,6 +82,7 @@ const Post = () => {
             <AddPostModel
                 opened={showAddPostModel}
                 onClose={closeAddModal}
+                setPosts={setPosts}
             ></AddPostModel>
         </div>
     );
