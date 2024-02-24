@@ -1,7 +1,7 @@
 import { Container, Text, Button, Group, Divider } from "@mantine/core";
 import { GithubIcon } from "@mantinex/dev-icons";
 import classes from "../styles/pages/HeroTitle.module.css";
-import { Header } from "../components/header";
+import { Header } from "../components/Header";
 import { Link } from "react-router-dom";
 import GradientButton from "../components/GradientButton";
 
