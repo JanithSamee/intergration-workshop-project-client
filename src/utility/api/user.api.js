@@ -1,6 +1,8 @@
 import axios from "axios";
-
-const BASE_API = axios.create({ baseURL: "http://127.0.0.1:3000/api/v1" });
+const base_user = import.meta.VITE_BASE_URL;
+const BASE_API = axios.create({
+    baseURL: base_user || "http://127.0.0.1:3000/api/v1",
+});
 
 async function register({ username, password, email }) {
     return await BASE_API.post("/user/register", {
